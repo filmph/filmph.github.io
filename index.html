@@ -186,12 +186,18 @@
             }, 500);
 
             if (window.location.pathname === '/' || window.location.pathname === '/index.html') {
-                const words = ['müzik', 'film', 'fotoğraf', 'fotoğra'];
+                const words = [
+                    { text: 'müzik', link: '/muzik' },
+                    { text: 'film', link: '/film' },
+                    { text: 'fotoğraf', link: '/fotograf' },
+                    { text: 'kitap', link: '/kitap' }
+                ];
                 let currentIndex = 0;
                 const changingWord = document.getElementById('changing-word');
 
                 function updateWord() {
-                    changingWord.textContent = words[currentIndex];
+                    const word = words[currentIndex];
+                    changingWord.innerHTML = `<a href="${word.link}">${word.text}</a>`;
                     currentIndex = (currentIndex + 1) % words.length;
                 }
 
