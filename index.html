@@ -75,17 +75,14 @@
             text-decoration: none;
         }
 
-        nav a i {
-    font-size: 18px;
-    color: #FFD700;
-    text-shadow: 0 0 5px rgba(255, 215, 0, 0.5);
-    transition: all 0.3s ease;
+nav a i {
+    font-size: 16px;               /* Boyutu buradan değiştirebilirsiniz */
+    color: var(--text-color);      /* Rengi buradan değiştirebilirsiniz */
+    transition: color 0.3s ease;
 }
 
 nav a:hover i {
-    color: #FFA500;
-    text-shadow: 0 0 10px rgba(255, 165, 0, 0.8);
-    transform: rotate(180deg);    /* Hover'da dönme efekti */
+    color: var(--accent-color);    /* Hover durumundaki rengi buradan değiştirebilirsiniz */
 }
         }
 
