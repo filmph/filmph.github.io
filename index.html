@@ -26,13 +26,16 @@
 </head>
 <body>
     <nav role="navigation" aria-label="Ana navigasyon">
-        <a href="/" aria-current="page">bugün</a>
+        <a href="/" aria-current="page">anasayfa</a>
         <a href="/muzik">müzik</a>
-        <a href="/kitap">kitap</a>
         <a href="/film">film</a>
         <a href="/fotograf">fotoğraf</a>
-        <a href="/links">link</a>
-         
+        <a href="/kitap">kitap</a>
+        <i class="fas fa-bahai"></i>
+        <!-- Koyu mod açma/kapama butonu -->
+        <button id="dark-mode-toggle" aria-label="Koyu Modu Aç/Kapat">
+            <i class="fas fa-moon"></i>
+        </button>
     </nav>
 
     <main class="homepage">
@@ -102,6 +105,19 @@
                     <h1>${document.title}</h1>
                     <p>Bu sayfanın içeriği buraya gelecek.</p>
                 `;
+            }
+
+            // Koyu mod açma/kapama butonu
+            const darkModeToggle = document.getElementById('dark-mode-toggle');
+            darkModeToggle.addEventListener('click', () => {
+                document.body.classList.toggle('dark-mode');
+                // Koyu mod durumu yerel depolamaya kaydedilir
+                localStorage.setItem('dark-mode', document.body.classList.contains('dark-mode'));
+            });
+
+            // Sayfa yüklendiğinde koyu mod durumunu kontrol et
+            if (localStorage.getItem('dark-mode') === 'true') {
+                document.body.classList.add('dark-mode');
             }
         });
     </script>
