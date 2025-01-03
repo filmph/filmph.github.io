@@ -190,3 +190,18 @@ self.addEventListener('install', event => {
     })
   );
 });
+
+function updateWord() {
+  try {
+      if (!changingWord || !words || !words[currentIndex]) {
+          throw new Error('Required elements or data are missing');
+      }
+
+      changingWord.innerHTML = `<a href="${words[currentIndex].url}">${words[currentIndex].text}</a>`;
+      currentIndex = (currentIndex + 1) % words.length;
+  } catch (error) {
+      console.error('Error updating word:', error);
+      // Fallback content if needed
+      changingWord.innerHTML = 'Error updating word. Please try again later.';
+  }
+}
