@@ -153,9 +153,9 @@ main.homepage {
 }
 
 @keyframes underline-animation {
-    0% { background-color: red; }
-    33% { background-color: yellow; }
-    66% { background-color: white; }
+    0% { background-color: white; }
+    33% { background-color: rebeccapurple; }
+    66% { background-color: whitesmoke; }
     100% { background-color: red; }
 }
 
