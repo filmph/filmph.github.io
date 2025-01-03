@@ -6,6 +6,8 @@
     --border-color: #333;
     --nav-hover-bg: #333;
     --text-secondary: #aaa;
+    --highlight-color: #ffffff; /* Parlak beyaz */
+    --underline-color: #000000; /* Siyah */
 }
 
 * {
@@ -86,13 +88,13 @@ main.homepage {
 }
 
 #changing-word {
-    color: var(--text-secondary);
+    color: var(--highlight-color); /* Parlak beyaz */
     display: inline-block;
     min-width: 120px;
 }
 
 #changing-word a {
-    color: var(--accent-color);
+    color: var(--highlight-color); /* Parlak beyaz */
     text-decoration: none;
     transition: all 0.3s ease;
     position: relative;
@@ -100,7 +102,7 @@ main.homepage {
 }
 
 #changing-word a:hover {
-    color: var(--text-color);
+    color: var(--highlight-color); /* Parlak beyaz */
 }
 
 #changing-word a::after {
@@ -110,7 +112,7 @@ main.homepage {
     height: 2px;
     bottom: 0;
     left: 0;
-    background-color: var(--accent-color);
+    background-color: var(--underline-color); /* Siyah */
     transform: scaleX(0);
     transition: transform 0.3s ease;
 }
@@ -169,5 +171,7 @@ main.homepage {
         --border-color: #dddddd;
         --nav-hover-bg: #eeeeee;
         --text-secondary: #666666;
+        --highlight-color: #000000; /* Siyah */
+        --underline-color: #ffffff; /* Beyaz */
     }
 }
