@@ -1,7 +1,4 @@
-// Cache ismi için versiyon numarası ekleyelim
 const CACHE_NAME = 'bookmarks-cache-v1';
-
-// Cache'lenecek dosyaların listesi
 const urlsToCache = [
   '/',
   '/index.html',
@@ -11,10 +8,9 @@ const urlsToCache = [
   '/kitap',
   '/link',
   '/favicon.ico',
-  // Eğer varsa diğer statik dosyaları da ekleyin (resimler, CSS, JS dosyaları vb.)
+  // Diğer statik dosyaları da ekleyin (resimler, CSS, JS dosyaları vb.)
 ];
 
-// Service Worker kurulumu
 self.addEventListener('install', event => {
   event.waitUntil(
     caches.open(CACHE_NAME)
@@ -28,7 +24,6 @@ self.addEventListener('install', event => {
   );
 });
 
-// Cache'i aktif etme ve eski versiyonları temizleme
 self.addEventListener('activate', event => {
   event.waitUntil(
     caches.keys().then(cacheNames => {
@@ -44,13 +39,10 @@ self.addEventListener('activate', event => {
   );
 });
 
-// Ağ isteklerini yönetme
 self.addEventListener('fetch', event => {
   event.respondWith(
-    // "Network First, Cache Fallback" stratejisi
     fetch(event.request)
       .then(response => {
-        // Başarılı ağ yanıtını cache'e kaydet
         if (response && response.status === 200) {
           const responseClone = response.clone();
           caches.open(CACHE_NAME)
@@ -61,19 +53,14 @@ self.addEventListener('fetch', event => {
         return response;
       })
       .catch(() => {
-        // Ağ bağlantısı yoksa cache'den yanıt ver
         return caches.match(event.request)
           .then(response => {
             if (response) {
               return response;
             }
-            
-            // Eğer istek cache'de yoksa ve çevrimdışıysa özel bir hata sayfası göster
             if (event.request.mode === 'navigate') {
               return caches.match('/offline.html');
             }
-            
-            // Diğer kaynaklar için hata döndür
             return new Response('Çevrimdışı modda bu içeriğe erişilemiyor.', {
               status: 503,
               statusText: 'Service Unavailable',
@@ -86,7 +73,6 @@ self.addEventListener('fetch', event => {
   );
 });
 
-// Push bildirimlerini yönetme
 self.addEventListener('push', event => {
   if (event.data) {
     const options = {
@@ -106,7 +92,6 @@ self.addEventListener('push', event => {
   }
 });
 
-// Bildirime tıklanma olayını yönetme
 self.addEventListener('notificationclick', event => {
   event.notification.close();
   
@@ -115,17 +100,14 @@ self.addEventListener('notificationclick', event => {
   );
 });
 
-// Periyodik senkronizasyon (opsiyonel)
 self.addEventListener('periodicsync', event => {
   if (event.tag === 'update-content') {
     event.waitUntil(updateContent());
   }
 });
 
-// İçerik güncelleme fonksiyonu
 async function updateContent() {
   try {
-    // Burada içeriği güncellemek için gerekli işlemleri yapabilirsiniz
     const cache = await caches.open(CACHE_NAME);
     await cache.add('/'); // Ana sayfayı yeniden cache'le
   } catch (error) {
@@ -133,7 +115,6 @@ async function updateContent() {
   }
 }
 
-// Offline.html sayfası için basit bir içerik oluştur
 const offlineContent = `
 <!DOCTYPE html>
 <html lang="tr">
@@ -178,7 +159,6 @@ const offlineContent = `
 </html>
 `;
 
-// Offline sayfasını cache'e ekle
 self.addEventListener('install', event => {
   event.waitUntil(
     caches.open(CACHE_NAME).then(cache => {
@@ -190,18 +170,3 @@ self.addEventListener('install', event => {
     })
   );
 });
-
-function updateWord() {
-  try {
-      if (!changingWord || !words || !words[currentIndex]) {
-          throw new Error('Required elements or data are missing');
-      }
-
-      changingWord.innerHTML = `<a href="${words[currentIndex].url}">${words[currentIndex].text}</a>`;
-      currentIndex = (currentIndex + 1) % words.length;
-  } catch (error) {
-      console.error('Error updating word:', error);
-      // Fallback content if needed
-      changingWord.innerHTML = 'Error updating word. Please try again later.';
-  }
-}
