@@ -17,6 +17,68 @@
     <link rel="stylesheet" href="/css/styles.css">
 
     <style>
+        :root {
+            --secondary-bg: #181818;
+            --border-color: #333;
+            --text-secondary: #aaa;
+            --text-color: #fff;
+            --background-color: #222;
+            --accent-color: #3498db;
+        }
+
+        body {
+            background-color: var(--secondary-bg);
+            color: var(--text-color);
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol';
+            margin: 0;
+            padding: 0;
+        }
+
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 10px 20px;
+            background-color: #111111; /* Dark header */
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 15px;
+        }
+
+        .nav-links a {
+            color: #ffffff;
+            text-decoration: none;
+            font-size: 16px; /* Increased font size */
+        }
+
+        .nav-links a:hover {
+            text-decoration: underline;
+        }
+
+        #dark-mode-toggle {
+            background: none;
+            border: none;
+            color: var(--text-color);
+            cursor: pointer;
+            padding: 5px 10px;
+            margin-left: auto;
+        }
+
+        #dark-mode-toggle:hover {
+            color: var(--accent-color);
+        }
+
+        main {
+            padding: 20px;
+            max-width: 800px;
+            margin: 60px auto; /* Adjusted top margin */
+            background-color: var(--background-color); /* Slightly lighter background for the content */
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.2); /* Add a subtle shadow */
+            border-radius: 8px;
+        }
+
         .film-card {
             background-color: var(--secondary-bg);
             padding: 20px;
@@ -79,17 +141,17 @@
             text-decoration: underline;
         }
 
-        #dark-mode-toggle {
-            background: none;
-            border: none;
-            color: var(--text-color);
-            cursor: pointer;
-            padding: 5px 10px;
-            margin-left: auto;
+        .loading {
+            font-size: 1.5em;
+            text-align: center;
         }
 
-        #dark-mode-toggle:hover {
-            color: var(--accent-color);
+        .content {
+            display: none;
+        }
+
+        .content.visible {
+            display: block;
         }
     </style>
 </head>
