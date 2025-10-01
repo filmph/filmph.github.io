@@ -73,12 +73,19 @@
 </head>
 <body>
     <header>
-        <nav>
-            <a href="/index">Home</a>
-            <a href="/films">Films</a>
+        <nav role="navigation" aria-label="Ana navigasyon">
+        <div class="nav-links">
+            <a href="/" aria-current="page">bugün</a>
+            <a href="/muzik">müzik</a>
+            <a href="/film">film</a>
+            <a href="/fotograf">fotoğraf</a>
             <a href="/kitap">kitap</a>
-            <a href="/links">Links</a>
-        </nav>
+            <a href="/links">links</a>
+        </div>
+        <button id="dark-mode-toggle" aria-label="Koyu Modu Aç/Kapat">
+            <i class="fas fa-moon"></i>
+        </button>
+    </nav>
     </header>
     <main>
         <h1> I'm getting bookmarksss</h1>
