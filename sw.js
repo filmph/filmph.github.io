@@ -5,13 +5,16 @@ const CACHE_NAME = 'bookmarks-cache-v1';
 const urlsToCache = [
   '/',
   '/index.html',
-  '/muzik',
-  '/film',
-  '/fotograf',
-  '/kitap',
-  '/link',
+  '/music.html',
+  '/films.html',
+  '/photo.html',
+  '/books.html',
+  '/links.html',
+  '/interviews.html',
+  '/today.html',
+  '/assets/css/style.css',
+  '/assets/js/script.js',
   '/favicon.ico',
-  // Eğer varsa diğer statik dosyaları da ekleyin (resimler, CSS, JS dosyaları vb.)
 ];
 
 // Service Worker kurulumu

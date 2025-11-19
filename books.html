@@ -1,71 +1,83 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="tr" data-theme="dark">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Books – near.blog</title>
-    <!-- Font Awesome CDN for icons -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
-    <link rel="stylesheet" href="css/styles.css">
-        p {
-            line-height: 1.5;
-            margin-bottom: 12px;
-            font-size: 16px;
-            color: #f0f0f0;
-        }
+    <meta name="description" content="Kişisel kitap koleksiyonu ve okuma listesi">
+    <meta name="keywords" content="kitap, okuma, kütüphane, öneri">
+    <meta name="theme-color" content="#111111">
 
-        a {
-            color: #3498db; /* Link color */
-            text-decoration: none;
-        }
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://filmph.github.io/books.html">
+    <meta property="og:title" content="kitap - bookmarkss">
+    <meta property="og:description" content="Kişisel kitap koleksiyonu ve okuma listesi">
 
-        a:hover {
-            text-decoration: underline;
-        }
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image">
+    <meta property="twitter:url" content="https://filmph.github.io/books.html">
+    <meta property="twitter:title" content="kitap - bookmarkss">
+    <meta property="twitter:description" content="Kişisel kitap koleksiyonu ve okuma listesi">
 
-        strong {
-            font-weight: bold;
-        }
-    </style>
+    <title>kitap - bookmarkss</title>
+
+    <link rel="stylesheet" href="assets/css/style.css">
 </head>
+
 <body>
-        <p>If you're reading this, feel free to send me a message anywhere you see me! You can DM me on <a href="https://twitter.com">Twitter</a> or email me at <a href="mailto:near@filmph.github.io">near@filmph.github.io</a>. This page was last updated on Nov 17th 2024.</p>
-        <nav role="navigation" aria-label="Ana navigasyon">
+    <nav role="navigation" aria-label="Ana navigasyon">
         <div class="nav-links">
-            <a href="/" aria-current="page">bugün</a>
-            <a href="/music">müzik</a>
-            <a href="/film">film</a>
-            <a href="/photograph">fotoğraf</a>
-            <a href="/books">kitap</a>
-            <a href="/links">links</a>
+            <a href="index.html" aria-label="Ana Sayfa" class="home-link">
+                <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none"
+                    stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M3 20v-8L12 3l9 9v8a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path>
+                </svg>
+            </a>
+            <a href="today.html">bugün</a>
+            <a href="music.html">müzik</a>
+            <a href="films.html">film</a>
+            <a href="photo.html">fotoğraf</a>
+            <a href="books.html" aria-current="page">kitap</a>
+            <a href="links.html">links</a>
         </div>
-        <button id="dark-mode-toggle" aria-label="Koyu Modu Aç/Kapat">
-            <i class="fas fa-moon"></i>
+        <button class="theme-toggle" aria-label="Karanlık modu aç/kapat">
+            <svg viewBox="0 0 24 24">
+                <path d="M12 3c.132 0 .263 0 .393 0a7.5 7.5 0 0 0 7.92 12.446a9 9 0 1 1 -8.313 -12.454z" />
+            </svg>
         </button>
-        <script>
-            const toggleBtn = document.getElementById('dark-mode-toggle');
-            const body = document.body;
-            toggleBtn.addEventListener('click', () => {
-                body.classList.toggle('light-mode');
-                const icon = toggleBtn.querySelector('i');
-                if (body.classList.contains('light-mode')) {
-                    icon.classList.remove('fa-moon');
-                    icon.classList.add('fa-sun');
-                } else {
-                    icon.classList.remove('fa-sun');
-                    icon.classList.add('fa-moon');
-                }
-            });
-        </script>
     </nav>
-    </header>
+
     <main>
-        <h1>Books & Reading</h1>
-        <p>I do independent research, machine learning, investing, programming, and other creative work.</p>
-        <p>Most of my work revolves around AI, longevity, biology, VR, infosec, finance, music theory, UX, anime, meta-rationality, memetics, and epistemology.</p>
-        <p>It seems like the most impactful field right now is AI. Longevity, bioengineering, coordination mechanisms, and VR/AR are also really exciting this decade.</p>
-        <p>If you're reading this, feel free to send me a message anywhere you see me! you can DM me on <a href="https://twitter.com">Twitter</a> or email me at near at this domain. This page was last updated on Nov 17th 2024.</p>
-        <p><strong>This Blog</strong></p>
+        <div class="content visible">
+            <div class="page-header">
+                <h1>kitap</h1>
+            </div>
+            <div class="books-grid">
+                <!-- Placeholder content -->
+                <div class="book-item">
+                    <div class="book-cover">
+                        <span>Kapak</span>
+                    </div>
+                    <div class="book-info">
+                        <h4 class="book-title">Kitap Adı</h4>
+                        <p class="book-author">Yazar</p>
+                    </div>
+                </div>
+                <div class="book-item">
+                    <div class="book-cover">
+                        <span>Kapak</span>
+                    </div>
+                    <div class="book-info">
+                        <h4 class="book-title">Başka Bir Kitap</h4>
+                        <p class="book-author">Yazar Adı</p>
+                    </div>
+                </div>
+            </div>
+        </div>
     </main>
+
+    <script src="assets/js/script.js"></script>
 </body>
+
 </html>
