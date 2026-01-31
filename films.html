@@ -23,6 +23,7 @@
     <title>film - bookmarkss</title>
 
     <link rel="stylesheet" href="assets/css/style.css">
+    <!-- film card specific styles (moved to assets/css/style.css recommended) -->
 </head>
 
 <body>
@@ -53,21 +54,130 @@
             <div class="page-header">
                 <h1>film</h1>
             </div>
-            <div class="collection-list">
-                <!-- Placeholder content -->
-                <div class="collection-item">
-                    <span class="date">2024</span>
-                    <span class="main-info">Film Adı</span>
-                    <span class="sub-info">Yönetmen</span>
-                </div>
-                <div class="collection-item">
-                    <span class="date">2023</span>
-                    <span class="main-info">Başka Bir Film</span>
-                    <span class="sub-info">Yönetmen Adı</span>
-                </div>
+
+            <!-- Collection list: cards will be injected here -->
+            <div class="collection-list film-collection" id="filmCollection">
+                <!--
+                  Example film cards are created dynamically from the `films` array in the script.
+                  To add/change films later: edit the `films` array in the <script> below or
+                  add static .film-card elements following the same structure.
+                -->
             </div>
         </div>
     </main>
+
+    <!-- Template for a single film card -->
+    <template id="filmCardTemplate">
+        <article class="film-card">
+            <div class="poster-wrap">
+                <img class="poster" src="" alt="">
+                <button class="add-btn" title="Add to list" aria-label="Add to list">+</button>
+                <span class="rank-badge"></span>
+            </div>
+
+            <div class="film-info">
+                <h2 class="film-title"></h2>
+
+                <div class="meta-row">
+                    <span class="year"></span>
+                    <span class="dot">•</span>
+                    <span class="duration"></span>
+                    <span class="dot">•</span>
+                    <span class="rating-label"></span>
+                </div>
+
+                <div class="rating-row">
+                    <span class="star">★</span>
+                    <span class="rating"></span>
+                    <a href="#" class="rate-link">Rate</a>
+                </div>
+
+                <div class="actions-row">
+                    <a href="#" class="mark-watched">👁 Mark as watched</a>
+                </div>
+
+                <p class="description"></p>
+            </div>
+        </article>
+    </template>
+
+    <script>
+        /*
+         * films array: modify this list to change films rendered on the page.
+         * Fields:
+         * - title: string
+         * - year: string/number
+         * - duration: string (e.g. "2h 17m")
+         * - rating: number (e.g. 7.5)
+         * - votes: string (e.g. "380K")
+         * - age: string (e.g. "R")
+         * - poster: URL or relative path to an image
+         * - rank: string (e.g. "#3") optional
+         * - description: string
+         */
+        const films = [
+            {
+                title: "Sinners",
+                year: 2025,
+                duration: "2h 17m",
+                rating: 7.5,
+                votes: "380K",
+                age: "R",
+                poster: "assets/images/sinners.jpg", // replace with your poster image path
+                rank: "#3",
+                description: "Trying to leave their troubled lives behind, twin brothers return to their hometown to start again, only to discover that an even greater evil is waiting to welcome them back."
+            },
+            {
+                title: "Başka Bir Film",
+                year: 2023,
+                duration: "1h 45m",
+                rating: 6.8,
+                votes: "12K",
+                age: "PG-13",
+                poster: "assets/images/placeholder.jpg",
+                rank: "#14",
+                description: "Kısa açıklama veya özet burada yer alır. Filmi daha iyi tanımlamak için birkaç cümle."
+            }
+        ];
+
+        function formatRating(rating, votes) {
+            if (!rating) return "";
+            return `${rating} (${votes || "—"})`;
+        }
+
+        function createCard(film) {
+            const tpl = document.getElementById('filmCardTemplate');
+            const node = tpl.content.cloneNode(true);
+            node.querySelector('.poster').src = film.poster || '';
+            node.querySelector('.poster').alt = film.title + ' poster';
+            const rankEl = node.querySelector('.rank-badge');
+            if (film.rank) {
+                rankEl.textContent = film.rank;
+                rankEl.style.display = 'inline-block';
+            } else {
+                rankEl.style.display = 'none';
+            }
+            node.querySelector('.film-title').textContent = film.title;
+            node.querySelector('.year').textContent = film.year || '';
+            node.querySelector('.duration').textContent = film.duration || '';
+            node.querySelector('.rating-label').textContent = film.age || '';
+            node.querySelector('.rating').textContent = formatRating(film.rating, film.votes);
+            node.querySelector('.description').textContent = film.description || '';
+            // Add hooks for actions (mark watched / rate / add) if you want later
+            return node;
+        }
+
+        function renderFilms() {
+            const container = document.getElementById('filmCollection');
+            container.innerHTML = '';
+            films.forEach(f => {
+                container.appendChild(createCard(f));
+            });
+        }
+
+        // Initial render
+        renderFilms();
+    </script>
 
     <script src="assets/js/script.js"></script>
 </body>
