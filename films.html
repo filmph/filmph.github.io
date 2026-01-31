@@ -23,7 +23,7 @@
     <title>film - bookmarkss</title>
 
     <link rel="stylesheet" href="assets/css/style.css">
-    <!-- film card specific styles (moved to assets/css/style.css recommended) -->
+    <link rel="stylesheet" href="assets/css/films.css">
 </head>
 
 <body>
@@ -55,131 +55,41 @@
                 <h1>film</h1>
             </div>
 
-            <!-- Collection list: cards will be injected here -->
-            <div class="collection-list film-collection" id="filmCollection">
-                <!--
-                  Example film cards are created dynamically from the `films` array in the script.
-                  To add/change films later: edit the `films` array in the <script> below or
-                  add static .film-card elements following the same structure.
-                -->
-            </div>
+            <div class="collection-list film-collection" id="filmCollection"></div>
         </div>
     </main>
 
-    <!-- Template for a single film card -->
     <template id="filmCardTemplate">
         <article class="film-card">
             <div class="poster-wrap">
                 <img class="poster" src="" alt="">
-                <button class="add-btn" title="Add to list" aria-label="Add to list">+</button>
-                <span class="rank-badge"></span>
+                <button class="add-btn" title="Add to list" aria-label="Add to list">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="5" x2="12" y2="19"></line><line x1="5" y1="12" x2="19" y2="12"></line></svg>
+                </button>
             </div>
-
             <div class="film-info">
-                <h2 class="film-title"></h2>
-
-                <div class="meta-row">
-                    <span class="year"></span>
-                    <span class="dot">•</span>
-                    <span class="duration"></span>
-                    <span class="dot">•</span>
-                    <span class="rating-label"></span>
-                </div>
-
                 <div class="rating-row">
-                    <span class="star">★</span>
+                    <svg class="star" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="currentColor" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon></svg>
                     <span class="rating"></span>
-                    <a href="#" class="rate-link">Rate</a>
+                    <button class="add-to-watchlist" aria-label="Add to watchlist">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"></path></svg>
+                    </button>
                 </div>
-
-                <div class="actions-row">
-                    <a href="#" class="mark-watched">👁 Mark as watched</a>
-                </div>
-
-                <p class="description"></p>
+                <h2 class="film-title"></h2>
+                <a class="watch-now-btn" href="#" target="_blank">
+                    Watch now
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path><polyline points="15 3 21 3 21 9"></polyline><line x1="10" y1="14" x2="21" y2="3"></line></svg>
+                </a>
+                <a class="trailer-btn" href="#">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="currentColor" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="5 3 19 12 5 21 5 3"></polygon></svg>
+                    Trailer
+                </a>
             </div>
         </article>
     </template>
-
-    <script>
-        /*
-         * films array: modify this list to change films rendered on the page.
-         * Fields:
-         * - title: string
-         * - year: string/number
-         * - duration: string (e.g. "2h 17m")
-         * - rating: number (e.g. 7.5)
-         * - votes: string (e.g. "380K")
-         * - age: string (e.g. "R")
-         * - poster: URL or relative path to an image
-         * - rank: string (e.g. "#3") optional
-         * - description: string
-         */
-        const films = [
-            {
-                title: "Sinners",
-                year: 2025,
-                duration: "2h 17m",
-                rating: 7.5,
-                votes: "380K",
-                age: "R",
-                poster: "assets/images/sinners.jpg", // replace with your poster image path
-                rank: "#3",
-                description: "Trying to leave their troubled lives behind, twin brothers return to their hometown to start again, only to discover that an even greater evil is waiting to welcome them back."
-            },
-            {
-                title: "Başka Bir Film",
-                year: 2023,
-                duration: "1h 45m",
-                rating: 6.8,
-                votes: "12K",
-                age: "PG-13",
-                poster: "assets/images/placeholder.jpg",
-                rank: "#14",
-                description: "Kısa açıklama veya özet burada yer alır. Filmi daha iyi tanımlamak için birkaç cümle."
-            }
-        ];
-
-        function formatRating(rating, votes) {
-            if (!rating) return "";
-            return `${rating} (${votes || "—"})`;
-        }
-
-        function createCard(film) {
-            const tpl = document.getElementById('filmCardTemplate');
-            const node = tpl.content.cloneNode(true);
-            node.querySelector('.poster').src = film.poster || '';
-            node.querySelector('.poster').alt = film.title + ' poster';
-            const rankEl = node.querySelector('.rank-badge');
-            if (film.rank) {
-                rankEl.textContent = film.rank;
-                rankEl.style.display = 'inline-block';
-            } else {
-                rankEl.style.display = 'none';
-            }
-            node.querySelector('.film-title').textContent = film.title;
-            node.querySelector('.year').textContent = film.year || '';
-            node.querySelector('.duration').textContent = film.duration || '';
-            node.querySelector('.rating-label').textContent = film.age || '';
-            node.querySelector('.rating').textContent = formatRating(film.rating, film.votes);
-            node.querySelector('.description').textContent = film.description || '';
-            // Add hooks for actions (mark watched / rate / add) if you want later
-            return node;
-        }
-
-        function renderFilms() {
-            const container = document.getElementById('filmCollection');
-            container.innerHTML = '';
-            films.forEach(f => {
-                container.appendChild(createCard(f));
-            });
-        }
-
-        // Initial render
-        renderFilms();
-    </script>
-
+    
     <script src="assets/js/script.js"></script>
+    <script src="assets/js/films.js"></script>
 </body>
 
 </html>
