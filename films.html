@@ -50,28 +50,12 @@
     </nav>
 
     <main>
-        <div class="content visible">
-            <div class="film-header">
-                <h1 id="filmTitle"></h1>
-                <p id="filmMeta"></p>
-            </div>
-
-            <div class="gallery-container" id="filmCollection"></div>
+        <div class="slider-container">
+            <div class="slider-track"></div>
+            <span class="prev-btn">&#10094;</span>
+            <span class="next-btn">&#10095;</span>
         </div>
     </main>
-
-    <div id="lightbox" class="lightbox">
-        <span class="close-btn">&times;</span>
-        <span class="prev-btn">&#10094;</span>
-        <span class="next-btn">&#10095;</span>
-        <img class="lightbox-content" id="lightboxImg">
-    </div>
-
-    <template id="filmCardTemplate">
-        <div class="gallery-item">
-            <img src="" alt="" class="gallery-image">
-        </div>
-    </template>
     
     <script src="assets/js/script.js"></script>
     <script src="assets/js/films.js"></script>
