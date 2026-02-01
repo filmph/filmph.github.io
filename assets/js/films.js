@@ -17,6 +17,24 @@ const films = [
         poster: "https://image.tmdb.org/t/p/w500//pQXjVt5MvSg2uhA5x6r3b7F384s.jpg",
         watch_url: "#",
         trailer_url: "#"
+    },
+    {
+        title: "The Great Dictator",
+        poster: "https://www.themoviedb.org/t/p/original/bS13yK3kslfe2nS2c9yB3X200a7.jpg",
+        watch_url: "#",
+        trailer_url: "#"
+    },
+    {
+        title: "Citizen Kane",
+        poster: "https://www.themoviedb.org/t/p/original/fqPqE23ycfft7iI7vM1jG1t32p.jpg",
+        watch_url: "#",
+        trailer_url: "#"
+    },
+    {
+        title: "Vertigo",
+        poster: "https://www.themoviedb.org/t/p/original/9fL3kQ3b9a2vC5yD3aQjO6b2vH.jpg",
+        watch_url: "#",
+        trailer_url: "#"
     }
 ];
 
