@@ -1,50 +1,23 @@
-
-const films = [
-    {
-        title: "Birth",
-        year: 2004,
-        director: "Jonathan Glazer",
-        description: "A young boy attempts to convince a woman that he is her dead husband reincarnated.",
-        image: "https://www.themoviedb.org/t/p/w1280/A5E0K1rStSg1d1v32S4d3nB2W3t.jpg",
-    },
-    {
-        title: "The Killing of a Sacred Deer",
-        year: 2017,
-        director: "Yorgos Lanthimos",
-        description: "A surgeon's seemingly perfect life starts to unravel when a teenage boy he has taken under his wing begins to exhibit sinister behavior.",
-        image: "https://www.themoviedb.org/t/p/w1280/vV3ANs23j1d2V0M2iZz85bZJ5gA.jpg",
-    },
-    {
-        title: "The Lobster",
-        year: 2015,
-        director: "Yorgos Lanthimos",
-        description: "In a dystopian near future, single people are taken to The Hotel, where they are obliged to find a romantic partner in forty-five days or are transformed into beasts and sent off into The Woods.",
-        image: "https://www.themoviedb.org/t/p/w1280/2G0AJr2t5m2uoXnsQ3a2e2aSAuC.jpg",
-    },
-    {
-        title: "Dogtooth",
-        year: 2009,
-        director: "Yorgos Lanthimos",
-        description: "Three teenagers live in isolation, believing that they can only leave their parents' compound when their dogtooth falls out.",
-        image: "https://www.themoviedb.org/t/p/w1280/8JTM9u1bSbg8iV4e62d4k2i5b1.jpg",
-    },
-    {
-        title: "Poor Things",
-        year: 2023,
-        director: "Yorgos Lanthimos",
-        description: "The incredible tale about the fantastical evolution of Bella Baxter, a young woman brought back to life by the brilliant and unorthodox scientist Dr. Godwin Baxter.",
-        image: "https://www.themoviedb.org/t/p/w1280/kCGlIMrgKHyydA2aI4a923a1wIu.jpg",
-    },
-    {
-        title: "The Favourite",
-        year: 2018,
-        director: "Yorgos Lanthimos",
-        description: "In early 18th century England, a frail Queen Anne occupies the throne and her close friend, Lady Sarah, governs the country in her stead. When a new servant, Abigail, arrives, her charm endears her to Sarah.",
-        image: "https://www.themoviedb.org/t/p/w1280/gMKi2i5Uv5vBzB4sHxGAn2xSt1I.jpg",
-    }
-];
+const film = {
+    title: "Birth",
+    year: 2004,
+    director: "Jonathan Glazer",
+    description: "A young boy attempts to convince a woman that he is her dead husband reincarnated.",
+    images: [
+        "https://www.themoviedb.org/t/p/original/u5f5pCh3d23xT5f1s2Oik2j0s63.jpg",
+        "https://www.themoviedb.org/t/p/original/tL9dpof26IqwS8skd2G3a1s0i8.jpg",
+        "https://www.themoviedb.org/t/p/original/q4FQy2GKoTfYV21lD91Q5aRN3k.jpg",
+        "https://www.themoviedb.org/t/p/original/9fntJIz2e8PCDBsl26uV9i1lZ3.jpg",
+        "https://www.themoviedb.org/t/p/original/r09C2yN2F11w9yB2lFtvDAsC5Iu.jpg"
+    ]
+};
 
 document.addEventListener('DOMContentLoaded', () => {
+    // Populate film info
+    document.getElementById('filmTitle').textContent = film.title;
+    document.getElementById('filmMeta').textContent = `${film.year} • Directed by ${film.director}`;
+
+
     const filmCollection = document.getElementById('filmCollection');
     const lightbox = document.getElementById('lightbox');
     const lightboxImg = document.getElementById('lightboxImg');
@@ -53,10 +26,11 @@ document.addEventListener('DOMContentLoaded', () => {
     const nextBtn = lightbox.querySelector('.next-btn');
 
     let currentIndex = 0;
+    const images = film.images; 
 
     function openLightbox(index) {
         currentIndex = index;
-        lightboxImg.src = films[currentIndex].image;
+        lightboxImg.src = images[currentIndex];
         lightbox.style.display = 'block';
         document.body.style.overflow = 'hidden';
     }
@@ -67,23 +41,24 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     function showPrevImage() {
-        currentIndex = (currentIndex - 1 + films.length) % films.length;
-        lightboxImg.src = films[currentIndex].image;
+        currentIndex = (currentIndex - 1 + images.length) % images.length;
+        lightboxImg.src = images[currentIndex];
     }
 
     function showNextImage() {
-        currentIndex = (currentIndex + 1) % films.length;
-        lightboxImg.src = films[currentIndex].image;
+        currentIndex = (currentIndex + 1) % images.length;
+        lightboxImg.src = images[currentIndex];
     }
 
-    films.forEach((film, index) => {
+    // Populate the gallery with images for the single film
+    images.forEach((imageUrl, index) => {
         const tpl = document.getElementById('filmCardTemplate');
         const node = tpl.content.cloneNode(true);
         const galleryItem = node.querySelector('.gallery-item');
         const galleryImage = node.querySelector('.gallery-image');
 
-        galleryImage.src = film.image;
-        galleryImage.alt = film.title;
+        galleryImage.src = imageUrl;
+        galleryImage.alt = `${film.title} - scene ${index + 1}`;
 
         galleryItem.addEventListener('click', () => openLightbox(index));
 
