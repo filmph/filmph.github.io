@@ -1,215 +1,75 @@
 
-.film-collection {
-    width: 100%;
-    max-width: 1200px;
+.gallery-container {
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
-    gap: 40px;
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+    gap: 15px;
     padding: 20px 0;
 }
 
-.film-card {
-    background-color: var(--card-bg);
-    border-radius: 12px;
+.gallery-item {
     overflow: hidden;
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
-    display: flex;
-    flex-direction: column;
-    border: 1px solid var(--border-color);
+    border-radius: 8px;
+    cursor: pointer;
+    transition: transform 0.2s ease-in-out;
+    aspect-ratio: 16/9;
 }
 
-.film-card:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 12px 24px rgba(0, 0, 0, 0.25);
+.gallery-item:hover {
+    transform: scale(1.05);
 }
 
-.poster-wrap {
-    position: relative;
-    width: 100%;
-    aspect-ratio: 2/3;
-    background-color: var(--nav-hover-bg);
-}
-
-.poster {
+.gallery-image {
     width: 100%;
     height: 100%;
     object-fit: cover;
 }
 
-.add-btn {
-    position: absolute;
-    top: 12px;
-    left: 12px;
-    background-color: rgba(0, 0, 0, 0.6);
-    color: white;
-    border: none;
-    border-radius: 50%;
-    width: 36px;
-    height: 36px;
-    cursor: pointer;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    opacity: 0;
-    transition: opacity 0.3s ease;
-    z-index: 2;
-}
-
-.film-card:hover .add-btn {
-    opacity: 1;
-}
-
-.add-btn svg {
-    width: 20px;
-    height: 20px;
-}
-
-.film-info {
-    padding: 15px;
-    display: flex;
-    flex-direction: column;
-    flex-grow: 1;
-    gap: 12px;
-}
-
-.rating-row {
-    display: flex;
-    align-items: center;
-    gap: 8px;
-    font-size: 1.1em;
-    font-weight: 500;
-}
-
-.rating-row .star {
-    color: #f5c518;
-    width: 20px;
-    height: 20px;
-}
-
-.add-to-watchlist {
-    background: none;
-    border: none;
-    color: var(--text-secondary);
-    cursor: pointer;
-    margin-left: auto;
-    padding: 0;
-}
-
-.add-to-watchlist svg {
-    width: 22px;
-    height: 22px;
-    transition: all 0.2s ease;
-}
-
-.add-to-watchlist:hover svg {
-    fill: var(--text-color);
-    stroke: var(--text-color);
-}
-
-.film-title {
-    font-size: 1.4em;
-    font-weight: 600;
-    line-height: 1.2;
-}
-
-.watch-now-btn,
-.trailer-btn {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 8px;
-    padding: 12px;
-    border-radius: 8px;
-    text-decoration: none;
-    font-weight: 500;
-    transition: background-color 0.3s ease;
-}
-
-.watch-now-btn {
-    background-color: #444;
-    color: white;
-}
-
-.watch-now-btn:hover {
-    background-color: #555;
-}
-
-.watch-now-btn svg {
-    width: 18px;
-    height: 18px;
-}
-
-.trailer-btn {
-    background-color: transparent;
-    border: 1px solid var(--border-color);
-    color: var(--text-color);
-}
-
-.trailer-btn:hover {
-    background-color: var(--nav-hover-bg);
-}
-
-.trailer-btn svg {
-    width: 18px;
-    height: 18px;
-    fill: var(--text-color);
-}
-
-/* Gallery styles */
-.gallery {
+.lightbox {
+    display: none;
     position: fixed;
     z-index: 1000;
+    padding-top: 60px;
     left: 0;
     top: 0;
     width: 100%;
     height: 100%;
     overflow: auto;
-    background-color: rgba(0,0,0,0.9);
-    display: none;
+    background-color: rgba(0, 0, 0, 0.9);
 }
 
-.gallery-content {
+.lightbox-content {
     margin: auto;
     display: block;
     width: 80%;
-    max-width: 700px;
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
+    max-width: 1200px;
 }
 
-.close-btn {
+.close-btn, .prev-btn, .next-btn {
     position: absolute;
-    top: 15px;
-    right: 35px;
-    color: #f1f1f1;
+    top: 50%;
+    transform: translateY(-50%);
+    color: white;
     font-size: 40px;
     font-weight: bold;
     transition: 0.3s;
     cursor: pointer;
-}
-
-.prev-btn, .next-btn {
-    cursor: pointer;
-    position: absolute;
-    top: 50%;
-    width: auto;
-    padding: 16px;
-    margin-top: -22px;
-    color: white;
-    font-weight: bold;
-    font-size: 20px;
-    transition: 0.6s ease;
-    border-radius: 0 3px 3px 0;
     user-select: none;
 }
 
-.next-btn {
-    right: 0;
-    border-radius: 3px 0 0 3px;
+.close-btn {
+    top: 15px;
+    right: 35px;
+    font-size: 60px;
 }
 
-.prev-btn:hover, .next-btn:hover {
-    background-color: rgba(0,0,0,0.8);
+.prev-btn {
+    left: 15px;
+}
+
+.next-btn {
+    right: 15px;
+}
+
+.close-btn:hover, .prev-btn:hover, .next-btn:hover {
+    color: #bbb;
 }
