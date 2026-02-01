@@ -2,34 +2,64 @@
 const films = [
     {
         title: "Steal",
-        rating: 7.1,
-        poster: "assets/images/steal.jpg", // placeholder
+        poster: "https://image.tmdb.org/t/p/w500//1Irf5yNnIayQ421dli3sA5p5bA1.jpg", 
         watch_url: "#",
         trailer_url: "#"
     },
     {
         title: "Sinners",
-        rating: 7.5,
-        poster: "assets/images/sinners.jpg",
+        poster: "https://image.tmdb.org/t/p/w500//z1wLS2b22V2gwk23h0sRIr6I08.jpg",
         watch_url: "#",
         trailer_url: "#"
     },
     {
-        title: "Başka Bir Film",
-        rating: 6.8,
-        poster: "assets/images/placeholder.jpg",
+        title: "Birth",
+        poster: "https://image.tmdb.org/t/p/w500//pQXjVt5MvSg2uhA5x6r3b7F384s.jpg",
         watch_url: "#",
         trailer_url: "#"
     }
 ];
 
-function createCard(film) {
+const gallery = document.getElementById('gallery');
+const galleryImage = document.getElementById('gallery-image');
+const closeBtn = document.querySelector('.close-btn');
+const prevBtn = document.querySelector('.prev-btn');
+const nextBtn = document.querySelector('.next-btn');
+let currentImageIndex = 0;
+
+function openGallery(index) {
+    gallery.style.display = 'block';
+    galleryImage.src = films[index].poster;
+    currentImageIndex = index;
+}
+
+function closeGallery() {
+    gallery.style.display = 'none';
+}
+
+function showPrevImage() {
+    currentImageIndex = (currentImageIndex - 1 + films.length) % films.length;
+    galleryImage.src = films[currentImageIndex].poster;
+}
+
+function showNextImage() {
+    currentImageIndex = (currentImageIndex + 1) % films.length;
+    galleryImage.src = films[currentImageIndex].poster;
+}
+
+closeBtn.addEventListener('click', closeGallery);
+prevBtn.addEventListener('click', showPrevImage);
+nextBtn.addEventListener('click', showNextImage);
+
+function createCard(film, index) {
     const tpl = document.getElementById('filmCardTemplate');
     const node = tpl.content.cloneNode(true);
     
-    node.querySelector('.poster').src = film.poster || '';
-    node.querySelector('.poster').alt = film.title + ' poster';
-    node.querySelector('.rating').textContent = film.rating;
+    const poster = node.querySelector('.poster');
+    poster.src = film.poster || '';
+    poster.alt = film.title + ' poster';
+    poster.addEventListener('click', () => openGallery(index));
+
     node.querySelector('.film-title').textContent = film.title;
     node.querySelector('.watch-now-btn').href = film.watch_url;
     node.querySelector('.trailer-btn').href = film.trailer_url;
@@ -40,8 +70,8 @@ function createCard(film) {
 function renderFilms() {
     const container = document.getElementById('filmCollection');
     container.innerHTML = '';
-    films.forEach(f => {
-        container.appendChild(createCard(f));
+    films.forEach((f, index) => {
+        container.appendChild(createCard(f, index));
     });
 }
 
