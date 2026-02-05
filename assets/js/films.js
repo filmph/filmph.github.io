@@ -2,6 +2,8 @@ const film = {
     title: "The Sea Wolf",
     year: 1941,
     director: "Michael Curtiz",
+    imdbId: "tt0034162",
+    rating: "7.5 (63k)",
     images: [
         "https://www.themoviedb.org/t/p/original/hY0oH2B3Fdlp5I05a3j54aFk3jg.jpg",
         "https://www.themoviedb.org/t/p/original/AtT7L9ubE64222p2kjG1L5a4sPA.jpg",
@@ -23,10 +25,44 @@ document.addEventListener('DOMContentLoaded', () => {
         images.forEach(imageUrl => {
             const slide = document.createElement('div');
             slide.className = 'slide';
+
             const img = document.createElement('img');
             img.src = imageUrl;
             img.alt = `${film.title} - Scene`;
+
+            // Create caption container
+            const caption = document.createElement('div');
+            caption.className = 'caption';
+
+            // Create film title
+            const title = document.createElement('div');
+            title.className = 'caption-title';
+            title.textContent = film.title;
+
+            // Create IMDb link
+            const imdbLink = document.createElement('a');
+            imdbLink.className = 'imdb-link';
+            imdbLink.href = `https://www.imdb.com/title/${film.imdbId}/`;
+            imdbLink.target = '_blank';
+            imdbLink.rel = 'noopener noreferrer';
+
+            const imdbLogo = document.createElement('span');
+            imdbLogo.className = 'imdb-logo';
+            imdbLogo.textContent = 'IMDb';
+
+            const imdbRating = document.createElement('span');
+            imdbRating.className = 'imdb-rating';
+            imdbRating.textContent = film.rating;
+
+            // Assemble caption
+            imdbLink.appendChild(imdbLogo);
+            imdbLink.appendChild(imdbRating);
+            caption.appendChild(title);
+            caption.appendChild(imdbLink);
+
+            // Add image and caption to slide
             slide.appendChild(img);
+            slide.appendChild(caption);
             sliderTrack.appendChild(slide);
         });
     }
