@@ -4,12 +4,13 @@ const film = {
     director: "Alfred Hitchcock",
     imdbId: "tt0052357",
     rating: "8.3 (433k)",
+    note: "Sinema tarihinin en ikonik yapıtlarından biri. Takıntı ve kimlik üzerine bir başyapıt.",
     images: [
-        "https://www.themoviedb.org/t/p/original/mIdYq2M2vC0C628W8SInL6k5D8p.jpg", // Çan kulesi sahnesi
-        "https://www.themoviedb.org/t/p/original/2L9SdfvV6P9Ym0X6ZfM2fX8kFqR.jpg",
-        "https://www.themoviedb.org/t/p/original/m9m7vS0Xo8KkPiaY3I6zK7qL1B7.jpg",
-        "https://www.themoviedb.org/t/p/original/8k9K8i8Vv8n9v8n9v8n9v8n9v8n.jpg", // Placeholder
-        "https://www.themoviedb.org/t/p/original/7k9K8i8Vv8n9v8n9v8n9v8n9v8n.jpg"  // Placeholder
+        "https://www.themoviedb.org/t/p/original/mIdYq2M2vC0C628W8SInL6k5D8p.jpg", 
+        "https://www.themoviedb.org/t/p/original/AtT7L9ubE64222p2kjG1L5a4sPA.jpg",
+        "https://www.themoviedb.org/t/p/original/wzW4T1as2aV2vV4pGfnmB4HnS2w.jpg",
+        "https://www.themoviedb.org/t/p/original/s4TsiA4ZqL3WbY2F6M8zNfP0x5R.jpg",
+        "https://www.themoviedb.org/t/p/original/u0YtQJ8s5S2dYpG3v0jGzQzJNz.jpg"
     ]
 };
 
@@ -34,12 +35,27 @@ document.addEventListener('DOMContentLoaded', () => {
             const caption = document.createElement('div');
             caption.className = 'caption';
 
-            // Create film title
+            // Left side: Title, Meta, Note
+            const captionLeft = document.createElement('div');
+            captionLeft.className = 'caption-left';
+
             const title = document.createElement('div');
             title.className = 'caption-title';
             title.textContent = film.title;
 
-            // Create IMDb link
+            const meta = document.createElement('div');
+            meta.className = 'caption-meta';
+            meta.textContent = `${film.year} • ${film.director}`;
+
+            const note = document.createElement('div');
+            note.className = 'caption-note';
+            note.textContent = film.note;
+
+            captionLeft.appendChild(title);
+            captionLeft.appendChild(meta);
+            captionLeft.appendChild(note);
+
+            // Right side: IMDb link
             const imdbLink = document.createElement('a');
             imdbLink.className = 'imdb-link';
             imdbLink.href = `https://www.imdb.com/title/${film.imdbId}/`;
@@ -54,10 +70,11 @@ document.addEventListener('DOMContentLoaded', () => {
             imdbRating.className = 'imdb-rating';
             imdbRating.textContent = film.rating;
 
-            // Assemble caption
             imdbLink.appendChild(imdbLogo);
             imdbLink.appendChild(imdbRating);
-            caption.appendChild(title);
+
+            // Assemble caption
+            caption.appendChild(captionLeft);
             caption.appendChild(imdbLink);
 
             // Add image and caption to slide
