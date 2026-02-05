@@ -6,11 +6,9 @@ const film = {
     rating: "8.3 (433k)",
     note: "Sinema tarihinin en ikonik yapıtlarından biri. Takıntı ve kimlik üzerine bir başyapıt.",
     images: [
-        "https://www.themoviedb.org/t/p/original/mIdYq2M2vC0C628W8SInL6k5D8p.jpg", 
-        "https://www.themoviedb.org/t/p/original/AtT7L9ubE64222p2kjG1L5a4sPA.jpg",
-        "https://www.themoviedb.org/t/p/original/wzW4T1as2aV2vV4pGfnmB4HnS2w.jpg",
-        "https://www.themoviedb.org/t/p/original/s4TsiA4ZqL3WbY2F6M8zNfP0x5R.jpg",
-        "https://www.themoviedb.org/t/p/original/u0YtQJ8s5S2dYpG3v0jGzQzJNz.jpg"
+        "https://image.tmdb.org/t/p/original/768C1Yl7x299L20C6yX5L0N2z1C.jpg", // Sizin yüklediğiniz sahne
+        "https://image.tmdb.org/t/p/original/m9m7vS0Xo8KkPiaY3I6zK7qL1B7.jpg",
+        "https://image.tmdb.org/t/p/original/AtT7L9ubE64222p2kjG1L5a4sPA.jpg"
     ]
 };
 
