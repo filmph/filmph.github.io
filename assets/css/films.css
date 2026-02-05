@@ -1,10 +1,38 @@
+/*
+  This file contains overrides for the film page to create a full-screen,
+  dark-themed image slider that works in both light and dark modes.
+*/
+
+/* 1. Force a black background on the body, overriding the theme. */
+body {
+    background-color: #000 !important;
+    padding: 0; /* Remove body padding from main style.css */
+}
+
+/* 2. Reset the main element, which is styled as a card in style.css */
+main {
+    background-color: transparent; /* Main should be transparent, slider-container will have the bg */
+    padding: 0;
+    border-radius: 0;
+    max-width: 100%;
+    /* Override flex properties from style.css */
+    align-items: stretch;
+    justify-content: stretch;
+}
+
+/* 3. Ensure nav items are visible on the black background, overriding light theme styles. */
+[data-theme="light"] nav a,
+[data-theme="light"] .theme-toggle {
+    color: #fff;
+}
+
+/* --- Original film.css content below, with adjustments --- */
+
 html, body {
     margin: 0;
-    padding: 0;
     width: 100%;
     height: 100%;
-    overflow: hidden; 
-    background-color: var(--background-color);
+    overflow: hidden;
 }
 
 .slider-container {
@@ -12,7 +40,7 @@ html, body {
     height: 100%;
     position: relative;
     overflow: hidden;
-    background-color: var(--card-bg);
+    background-color: #000; /* Explicitly black background for the slider area */
 }
 
 .slider-track {
@@ -41,7 +69,7 @@ html, body {
     position: absolute;
     top: 50%;
     transform: translateY(-50%);
-    color: var(--text-secondary);
+    color: rgba(255, 255, 255, 0.7);
     font-size: 50px;
     font-weight: bold;
     cursor: pointer;
@@ -52,7 +80,7 @@ html, body {
 }
 
 .prev-btn:hover, .next-btn:hover {
-    color: var(--text-color);
+    color: white;
 }
 
 .prev-btn {
