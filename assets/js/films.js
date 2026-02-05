@@ -1,15 +1,15 @@
 const film = {
-    title: "The Sea Wolf",
-    year: 1941,
-    director: "Michael Curtiz",
-    imdbId: "tt0034162",
-    rating: "7.5 (63k)",
+    title: "Vertigo",
+    year: 1958,
+    director: "Alfred Hitchcock",
+    imdbId: "tt0052357",
+    rating: "8.3 (433k)",
     images: [
-        "https://www.themoviedb.org/t/p/original/hY0oH2B3Fdlp5I05a3j54aFk3jg.jpg",
-        "https://www.themoviedb.org/t/p/original/AtT7L9ubE64222p2kjG1L5a4sPA.jpg",
-        "https://www.themoviedb.org/t/p/original/wzW4T1as2aV2vV4pGfnmB4HnS2w.jpg",
-        "https://www.themoviedb.org/t/p/original/s4TsiA4ZqL3WbY2F6M8zNfP0x5R.jpg",
-        "https://www.themoviedb.org/t/p/original/u0YtQJ8s5S2dYpG3v0jGzQzJNz.jpg"
+        "https://www.themoviedb.org/t/p/original/mIdYq2M2vC0C628W8SInL6k5D8p.jpg", // Çan kulesi sahnesi
+        "https://www.themoviedb.org/t/p/original/2L9SdfvV6P9Ym0X6ZfM2fX8kFqR.jpg",
+        "https://www.themoviedb.org/t/p/original/m9m7vS0Xo8KkPiaY3I6zK7qL1B7.jpg",
+        "https://www.themoviedb.org/t/p/original/8k9K8i8Vv8n9v8n9v8n9v8n9v8n.jpg", // Placeholder
+        "https://www.themoviedb.org/t/p/original/7k9K8i8Vv8n9v8n9v8n9v8n9v8n.jpg"  // Placeholder
     ]
 };
 
