@@ -80,6 +80,15 @@ nav a:hover {
     background-color: var(--nav-hover-bg);
 }
 
+#random-quote-link {
+    max-width: min(44vw, 420px);
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    opacity: 0.86;
+    font-style: italic;
+}
+
 .theme-toggle {
     cursor: pointer;
     background: none;
