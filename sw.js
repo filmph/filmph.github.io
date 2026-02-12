@@ -11,7 +11,6 @@ const urlsToCache = [
   '/books.html',
   '/links.html',
   '/interviews.html',
-  '/today.html',
   '/assets/css/style.css',
   '/assets/js/script.js',
   '/favicon.ico',

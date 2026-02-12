@@ -75,31 +75,6 @@ document.addEventListener('DOMContentLoaded', function () {
         }
     }
 
-    // Load today preview
-    async function loadTodayPreview() {
-        try {
-            const response = await fetch('today.html');
-            const html = await response.text();
-            const parser = new DOMParser();
-            const doc = parser.parseFromString(html, 'text/html');
-
-            // Get today's content sections
-            const songSection = doc.querySelector('.today-section:nth-of-type(1)');
-            const todayPreview = document.getElementById('today-preview');
-
-            if (todayPreview && songSection) {
-                // Create a simplified version of today's content
-                todayPreview.innerHTML = '';
-
-                // Clone the song of the day section
-                const songClone = songSection.cloneNode(true);
-                todayPreview.appendChild(songClone);
-            }
-        } catch (error) {
-            console.error('Error loading today preview:', error);
-        }
-    }
-
     // Load about/interviews preview
     async function loadAboutPreview() {
         try {
@@ -125,7 +100,6 @@ document.addEventListener('DOMContentLoaded', function () {
     // Load all dynamic content only on homepage
     if (document.getElementById('music-preview')) {
         loadMusicPreview();
-        loadTodayPreview();
         loadAboutPreview();
     }
 
