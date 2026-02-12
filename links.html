@@ -39,7 +39,7 @@
             <a href="films.html">film</a>
             <a href="photo.html">fotoğraf</a>
             <a href="books.html">kitap</a>
-            <a href="#" id="random-quote-link" aria-current="page" title="Rastgele alıntıya git">yükleniyor...</a>
+            <span id="random-quote-text" class="random-quote" aria-live="polite">yükleniyor...</span>
         </div>
         <button class="theme-toggle" aria-label="Karanlık modu aç/kapat">
             <svg viewBox="0 0 24 24">
@@ -74,34 +74,6 @@
     </main>
 
     <script src="assets/js/script.js"></script>
-    <script>
-        document.addEventListener('DOMContentLoaded', () => {
-            const quoteLink = document.getElementById('random-quote-link');
-
-            if (!quoteLink) {
-                return;
-            }
-
-            const quotes = [
-                {
-                    text: '“Bir filmi anlamak için bazen sesini kapatırım.”',
-                    target: '#interview-atlas'
-                },
-                {
-                    text: '“Not almak, hafızanın ritmini yavaşlatıyor.”',
-                    target: '#interview-aksam'
-                },
-                {
-                    text: '“Aynı sahneyi tekrar izlemek, yeni bir cümle kurmak gibi.”',
-                    target: '#interview-kirmizi'
-                }
-            ];
-
-            const randomQuote = quotes[Math.floor(Math.random() * quotes.length)];
-            quoteLink.textContent = randomQuote.text;
-            quoteLink.href = randomQuote.target;
-        });
-    </script>
 </body>
 
 </html>

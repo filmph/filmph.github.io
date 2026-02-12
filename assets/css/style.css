@@ -80,13 +80,18 @@ nav a:hover {
     background-color: var(--nav-hover-bg);
 }
 
-#random-quote-link {
+.random-quote {
+    display: inline-flex;
+    align-items: center;
+    padding: 6px 10px;
     max-width: min(44vw, 420px);
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
-    opacity: 0.86;
-    font-style: italic;
+    opacity: 0.92;
+    font-size: 14px;
+    font-weight: 500;
+    line-height: 1;
 }
 
 .theme-toggle {
