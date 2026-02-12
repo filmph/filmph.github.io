@@ -1,0 +1,7 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" role="img" aria-label="Bookmarks maskable icon">
+  <rect width="512" height="512" fill="#111111"/>
+  <g transform="translate(64,64)">
+    <rect width="384" height="384" rx="56" fill="#f5f5f5"/>
+    <path d="M120 72h144c17.67 0 32 14.33 32 32v188l-104-56-104 56V104c0-17.67 14.33-32 32-32z" fill="#111111"/>
+  </g>
+</svg>
