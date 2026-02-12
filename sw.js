@@ -1,5 +1,5 @@
 // Cache ismi için versiyon numarası ekleyelim
-const CACHE_NAME = 'bookmarks-cache-v1';
+const CACHE_NAME = 'bookmarks-cache-v3';
 
 // Cache'lenecek dosyaların listesi
 const urlsToCache = [
@@ -14,16 +14,23 @@ const urlsToCache = [
   '/today.html',
   '/assets/css/style.css',
   '/assets/js/script.js',
-  '/favicon.ico',
 ];
 
 // Service Worker kurulumu
 self.addEventListener('install', event => {
   event.waitUntil(
     caches.open(CACHE_NAME)
-      .then(cache => {
+      .then(async cache => {
         console.log('Cache opened');
-        return cache.addAll(urlsToCache);
+        await Promise.all(
+          urlsToCache.map(async url => {
+            try {
+              await cache.add(url);
+            } catch (error) {
+              console.warn(`Precache failed for ${url}:`, error);
+            }
+          })
+        );
       })
       .catch(error => {
         console.error('Cache installation failed:', error);
@@ -94,8 +101,6 @@ self.addEventListener('push', event => {
   if (event.data) {
     const options = {
       body: event.data.text(),
-      icon: '/favicon.ico',
-      badge: '/favicon.ico',
       vibrate: [100, 50, 100],
       data: {
         dateOfArrival: Date.now(),
