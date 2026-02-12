@@ -80,7 +80,7 @@ nav a:hover {
     background-color: var(--nav-hover-bg);
 }
 
-#random-quote-link {
+.random-quote {
     max-width: min(44vw, 420px);
     white-space: nowrap;
     overflow: hidden;

@@ -47,6 +47,21 @@ document.addEventListener('DOMContentLoaded', function () {
         setInterval(updateWord, 2000);
     }
 
+
+    // --- Navigation Quote Logic ---
+    const randomQuoteText = document.getElementById('random-quote-text');
+
+    if (randomQuoteText) {
+        const quotes = [
+            '“Bir filmi anlamak için bazen sesini kapatırım.”',
+            '“Not almak, hafızanın ritmini yavaşlatıyor.”',
+            '“Aynı sahneyi tekrar izlemek, yeni bir cümle kurmak gibi.”'
+        ];
+
+        const randomQuote = quotes[Math.floor(Math.random() * quotes.length)];
+        randomQuoteText.textContent = randomQuote;
+    }
+
     // --- Dynamic Content Loading ---
     // Load music preview
     async function loadMusicPreview() {
