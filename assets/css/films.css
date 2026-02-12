@@ -172,22 +172,75 @@ html, body {
     position: absolute;
     top: 50%;
     transform: translateY(-50%);
-    color: rgba(255, 255, 255, 0.5);
-    font-size: 50px;
-    font-weight: bold;
+    width: 44px;
+    height: 44px;
+    border: 1px solid rgba(255, 255, 255, 0.18);
+    border-radius: 999px;
+    background: rgba(16, 16, 16, 0.2);
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+    color: rgba(255, 255, 255, 0.55);
+    font-size: 28px;
+    font-weight: 600;
+    display: flex;
+    align-items: center;
+    justify-content: center;
     cursor: pointer;
     user-select: none;
-    transition: color 0.3s ease, opacity 0.3s ease;
     z-index: 10;
-    padding: 0 20px;
+    padding: 0;
+    opacity: 0.7;
+    transition: color 0.25s ease, background-color 0.25s ease, border-color 0.25s ease, opacity 0.25s ease;
 }
 
-.prev-btn:hover, .next-btn:hover {
-    color: white;
+.prev-btn span, .next-btn span {
+    display: block;
+    line-height: 1;
+    transition: transform 0.2s ease;
 }
 
-.prev-btn { left: 0; }
-.next-btn { right: 0; }
+.prev-btn:hover,
+.next-btn:hover,
+.prev-btn:focus-visible,
+.next-btn:focus-visible {
+    color: rgba(255, 255, 255, 0.95);
+    background: rgba(16, 16, 16, 0.4);
+    border-color: rgba(255, 255, 255, 0.4);
+    opacity: 1;
+}
+
+.prev-btn:hover span,
+.prev-btn:focus-visible span {
+    transform: translateX(-3px);
+}
+
+.next-btn:hover span,
+.next-btn:focus-visible span {
+    transform: translateX(3px);
+}
+
+.prev-btn:focus-visible,
+.next-btn:focus-visible {
+    outline: 2px solid rgba(255, 255, 255, 0.7);
+    outline-offset: 2px;
+}
+
+.prev-btn { left: 18px; }
+.next-btn { right: 18px; }
+
+@media (prefers-reduced-motion: reduce) {
+    .prev-btn, .next-btn,
+    .prev-btn span, .next-btn span {
+        transition: none;
+    }
+
+    .prev-btn:hover span,
+    .prev-btn:focus-visible span,
+    .next-btn:hover span,
+    .next-btn:focus-visible span {
+        transform: none;
+    }
+}
 
 @media (max-width: 768px) {
     .caption {
