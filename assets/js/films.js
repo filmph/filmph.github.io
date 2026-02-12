@@ -5,6 +5,7 @@ const film = {
     imdbId: "tt0052357",
     rating: "8.3 (433k)",
     note: "Sinema tarihinin en ikonik yapıtlarından biri. Takıntı ve kimlik üzerine bir başyapıt.",
+    noteItalic: false,
     images: [
         "https://image.tmdb.org/t/p/original/768C1Yl7x299L20C6yX5L0N2z1C.jpg", 
         "https://image.tmdb.org/t/p/original/m9m7vS0Xo8KkPiaY3I6zK7qL1B7.jpg",
@@ -44,10 +45,23 @@ document.addEventListener('DOMContentLoaded', () => {
 
             const meta = document.createElement('div');
             meta.className = 'caption-meta';
-            meta.textContent = `${film.year} • ${film.director}`;
+
+            const year = document.createElement('span');
+            year.className = 'meta-chip';
+            year.textContent = film.year;
+
+            const director = document.createElement('span');
+            director.className = 'meta-chip';
+            director.textContent = film.director;
+
+            meta.appendChild(year);
+            meta.appendChild(director);
 
             const note = document.createElement('div');
             note.className = 'caption-note';
+            if (film.noteItalic) {
+                note.classList.add('caption-note--italic');
+            }
             note.textContent = film.note;
 
             captionLeft.appendChild(title);
