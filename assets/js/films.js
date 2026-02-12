@@ -15,6 +15,21 @@ const film = {
 };
 
 document.addEventListener('DOMContentLoaded', () => {
+    const htmlElement = document.documentElement;
+    const themeToggle = document.querySelector('.theme-toggle');
+
+    // Films page should always stay in dark presentation.
+    htmlElement.setAttribute('data-theme', 'dark');
+
+    if (themeToggle) {
+        themeToggle.setAttribute('aria-label', 'Film sayfasında tema sabit olarak karanlık');
+        themeToggle.addEventListener('click', (event) => {
+            event.preventDefault();
+            htmlElement.setAttribute('data-theme', 'dark');
+            localStorage.setItem('theme', 'dark');
+        });
+    }
+
     const sliderTrack = document.querySelector('.slider-track');
     const prevBtn = document.querySelector('.prev-btn');
     const nextBtn = document.querySelector('.next-btn');

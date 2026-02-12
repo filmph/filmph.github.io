@@ -5,16 +5,37 @@
 
 :root {
     --film-accent: #dca445;
+    --film-bg: #000;
+    --film-surface: rgba(10, 10, 10, 0.78);
+    --film-text: #f8f8f8;
+    --film-muted: #c8c8c8;
+    --film-chip-border: rgba(255, 255, 255, 0.2);
+    --film-chip-bg: rgba(255, 255, 255, 0.07);
+    --film-button-bg: rgba(16, 16, 16, 0.24);
+    --film-button-border: rgba(255, 255, 255, 0.2);
+    --film-nav-bg: rgba(20, 20, 20, 0.86);
+    --film-nav-border: rgba(255, 255, 255, 0.13);
 }
 
 [data-theme="light"] {
-    --film-accent: #8a5a00;
+    --film-accent: #f6c453;
+    --film-bg: #050505;
+    --film-surface: rgba(18, 22, 28, 0.82);
+    --film-text: #fbfbfb;
+    --film-muted: #cfd6dd;
+    --film-chip-border: rgba(255, 255, 255, 0.24);
+    --film-chip-bg: rgba(255, 255, 255, 0.1);
+    --film-button-bg: rgba(20, 28, 40, 0.38);
+    --film-button-border: rgba(255, 255, 255, 0.26);
+    --film-nav-bg: rgba(18, 24, 33, 0.92);
+    --film-nav-border: rgba(255, 255, 255, 0.18);
 }
 
 /* 1. Force a black background on the body, overriding the theme. */
 body {
-    background-color: #000 !important;
+    background-color: var(--film-bg) !important;
     padding: 0; 
+    color: var(--film-text);
 }
 
 /* 2. Reset the main element */
@@ -27,10 +48,20 @@ main {
     justify-content: stretch;
 }
 
-/* 3. Ensure nav items are visible */
-[data-theme="light"] nav a,
-[data-theme="light"] .theme-toggle {
-    color: #fff;
+/* 3. Keep a dedicated cinematic nav surface regardless of site theme */
+nav {
+    background: var(--film-nav-bg);
+    border-color: var(--film-nav-border);
+}
+
+nav a,
+.theme-toggle {
+    color: var(--film-text);
+}
+
+nav a:hover,
+.theme-toggle:hover {
+    background-color: rgba(255, 255, 255, 0.08);
 }
 
 nav a[aria-current="page"] {
@@ -52,7 +83,7 @@ html, body {
     height: 100%;
     position: relative;
     overflow: hidden;
-    background-color: #000;
+    background-color: var(--film-bg);
 }
 
 
@@ -156,8 +187,8 @@ body.grain-overlay-enabled .slider-container::before {
     bottom: 0;
     left: 0;
     right: 0;
-    background-color: rgba(0, 0, 0, 0.85); /* Slightly darker */
-    color: #fff;
+    background-color: var(--film-surface);
+    color: var(--film-text);
     padding: 25px 40px;
     display: flex;
     justify-content: space-between;
@@ -203,9 +234,9 @@ body.grain-overlay-enabled .slider-container::before {
     display: inline-flex;
     align-items: center;
     padding: 2px 8px;
-    border: 1px solid rgba(255, 255, 255, 0.18);
+    border: 1px solid var(--film-chip-border);
     border-radius: 999px;
-    background: rgba(255, 255, 255, 0.05);
+    background: var(--film-chip-bg);
     line-height: 1.25;
 }
 
@@ -227,7 +258,7 @@ body.grain-overlay-enabled .slider-container::before {
     align-items: center;
     gap: 10px;
     text-decoration: none;
-    color: #fff;
+    color: var(--film-text);
     font-size: 1.1em;
 }
 
@@ -241,7 +272,7 @@ body.grain-overlay-enabled .slider-container::before {
 }
 
 .imdb-rating {
-    color: #ccc;
+    color: var(--film-muted);
 }
 
 
@@ -251,9 +282,9 @@ body.grain-overlay-enabled .slider-container::before {
     transform: translateY(-50%);
     width: 44px;
     height: 44px;
-    border: 1px solid rgba(255, 255, 255, 0.18);
+    border: 1px solid var(--film-button-border);
     border-radius: 999px;
-    background: rgba(16, 16, 16, 0.2);
+    background: var(--film-button-bg);
     backdrop-filter: blur(8px);
     -webkit-backdrop-filter: blur(8px);
     color: rgba(255, 255, 255, 0.55);
@@ -298,7 +329,7 @@ body.grain-overlay-enabled .slider-container::before {
 
 .prev-btn:focus-visible,
 .next-btn:focus-visible {
-    outline: 2px solid rgba(255, 255, 255, 0.7);
+    outline: 2px solid color-mix(in srgb, var(--film-text) 70%, transparent);
     outline-offset: 2px;
 }
 
