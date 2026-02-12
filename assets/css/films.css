@@ -38,7 +38,8 @@ nav {
 }
 
 nav a,
-.theme-toggle {
+.theme-toggle,
+.random-quote {
     color: var(--film-nav-text);
 }
 

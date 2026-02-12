@@ -85,8 +85,10 @@ nav a:hover {
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
-    opacity: 0.86;
-    font-style: italic;
+    opacity: 0.92;
+    font-size: 14px;
+    font-weight: 500;
+    line-height: 1;
 }
 
 .theme-toggle {
