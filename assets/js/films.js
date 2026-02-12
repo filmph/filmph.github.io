@@ -26,6 +26,9 @@ document.addEventListener('DOMContentLoaded', () => {
             const slide = document.createElement('div');
             slide.className = 'slide';
 
+            const imageFrame = document.createElement('div');
+            imageFrame.className = 'image-frame';
+
             const img = document.createElement('img');
             img.src = imageUrl;
             img.alt = `${film.title} - Scene`;
@@ -77,14 +80,24 @@ document.addEventListener('DOMContentLoaded', () => {
             caption.appendChild(imdbLink);
 
             // Add image and caption to slide
-            slide.appendChild(img);
+            imageFrame.appendChild(img);
+            slide.appendChild(imageFrame);
             slide.appendChild(caption);
             sliderTrack.appendChild(slide);
         });
     }
 
+    function updateActiveSlide() {
+        const slides = sliderTrack.querySelectorAll('.slide');
+
+        slides.forEach((slide, index) => {
+            slide.classList.toggle('is-active', index === currentIndex);
+        });
+    }
+
     function updateSliderPosition() {
         sliderTrack.style.transform = `translateX(-${currentIndex * 100}%)`;
+        updateActiveSlide();
     }
 
     function showPrevImage() {
