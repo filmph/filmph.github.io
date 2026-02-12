@@ -55,6 +55,36 @@ html, body {
     background-color: #000;
 }
 
+
+.slider-container::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    z-index: 2;
+    opacity: 0;
+    background-image:
+        radial-gradient(circle at 20% 30%, rgba(255, 255, 255, 0.035) 0 1px, transparent 1.8px),
+        radial-gradient(circle at 80% 70%, rgba(255, 255, 255, 0.028) 0 1px, transparent 1.9px),
+        radial-gradient(circle at 35% 80%, rgba(255, 255, 255, 0.03) 0 1px, transparent 2px);
+    background-size: 3px 3px, 4px 4px, 5px 5px;
+    mix-blend-mode: screen;
+    animation: grainDrift 14s steps(10) infinite;
+    transition: opacity 0.3s ease;
+}
+
+body.grain-overlay-enabled .slider-container::before {
+    opacity: 0.16;
+}
+
+@keyframes grainDrift {
+    0% { transform: translate3d(0, 0, 0); }
+    25% { transform: translate3d(-0.4%, 0.6%, 0); }
+    50% { transform: translate3d(0.6%, -0.4%, 0); }
+    75% { transform: translate3d(-0.5%, -0.5%, 0); }
+    100% { transform: translate3d(0, 0, 0); }
+}
+
 .slider-track {
     display: flex;
     height: 100%;
@@ -323,5 +353,12 @@ html, body {
 
     .imdb-link {
         font-size: 1rem;
+    }
+}
+
+
+@media (prefers-reduced-motion: reduce), (hover: none) and (pointer: coarse) {
+    .slider-container::before {
+        animation: none;
     }
 }
