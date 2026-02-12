@@ -3,6 +3,14 @@
   dark-themed image slider that works in both light and dark modes.
 */
 
+:root {
+    --film-accent: #dca445;
+}
+
+[data-theme="light"] {
+    --film-accent: #8a5a00;
+}
+
 /* 1. Force a black background on the body, overriding the theme. */
 body {
     background-color: #000 !important;
@@ -23,6 +31,13 @@ main {
 [data-theme="light"] nav a,
 [data-theme="light"] .theme-toggle {
     color: #fff;
+}
+
+nav a[aria-current="page"] {
+    text-decoration: underline;
+    text-decoration-color: var(--film-accent);
+    text-decoration-thickness: 2px;
+    text-underline-offset: 7px;
 }
 
 html, body {
@@ -130,6 +145,17 @@ html, body {
 .caption-title {
     font-size: 1.5em;
     font-weight: 600;
+}
+
+.caption-title::before {
+    content: "";
+    display: inline-block;
+    width: 12px;
+    height: 2px;
+    margin-right: 9px;
+    margin-bottom: 0.25em;
+    border-radius: 999px;
+    background-color: var(--film-accent);
 }
 
 .caption-meta {
