@@ -140,12 +140,12 @@ body.grain-overlay-enabled .slider-container::before {
     min-height: 56vh;
 }
 
-.image-frame--fallback {
+.image-frame--error {
     background: radial-gradient(circle at 25% 20%, rgba(255,255,255,0.08), transparent 40%), #111;
 }
 
-.image-frame--fallback::after {
-    content: "Fallback görsel";
+.image-frame--error::after {
+    content: "Görsel yüklenemedi";
     color: rgba(255, 255, 255, 0.8);
     font-size: 0.95rem;
     letter-spacing: 0.04em;
