@@ -51,43 +51,15 @@ document.addEventListener('DOMContentLoaded', function () {
     // --- Navigation Quote Logic ---
     const randomQuoteText = document.getElementById('random-quote-text');
 
-    const quotes = [
-        'Bir filmi anlamak için bazen sesini kapatırım.',
-        'Not almak, hafızanın ritmini yavaşlatıyor.',
-        'Aynı sahneyi tekrar izlemek, yeni bir cümle kurmak gibi.',
-        'Bazen tek bir cümle, bütün bir günü toparlar.',
-        'Sessizlik de iyi bir anlatıcıdır.'
-    ];
-
     if (randomQuoteText) {
+        const quotes = [
+            'Bir filmi anlamak için bazen sesini kapatırım.',
+            'Not almak, hafızanın ritmini yavaşlatıyor.',
+            'Aynı sahneyi tekrar izlemek, yeni bir cümle kurmak gibi.'
+        ];
+
         const randomQuote = quotes[Math.floor(Math.random() * quotes.length)];
         randomQuoteText.textContent = randomQuote;
-    }
-
-    const floatingQuotesContainer = document.getElementById('floating-quotes');
-
-    if (floatingQuotesContainer) {
-        const quoteCount = 10;
-
-        for (let i = 0; i < quoteCount; i++) {
-            const quoteElement = document.createElement('span');
-            quoteElement.className = 'floating-quote';
-            quoteElement.textContent = quotes[i % quotes.length];
-
-            const top = 8 + Math.random() * 84;
-            const left = 5 + Math.random() * 90;
-            const duration = 12 + Math.random() * 12;
-            const delay = Math.random() * 7;
-            const opacity = 0.05 + Math.random() * 0.1;
-
-            quoteElement.style.top = `${top}%`;
-            quoteElement.style.left = `${left}%`;
-            quoteElement.style.animationDuration = `${duration}s`;
-            quoteElement.style.animationDelay = `${delay}s`;
-            quoteElement.style.opacity = opacity.toFixed(2);
-
-            floatingQuotesContainer.appendChild(quoteElement);
-        }
     }
 
     // --- Dynamic Content Loading ---
