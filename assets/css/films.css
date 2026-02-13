@@ -134,6 +134,23 @@ body.grain-overlay-enabled .slider-container::before {
     border-radius: 8px;
 }
 
+
+.image-frame {
+    min-width: min(92vw, 1280px);
+    min-height: 56vh;
+}
+
+.image-frame--error {
+    background: radial-gradient(circle at 25% 20%, rgba(255,255,255,0.08), transparent 40%), #111;
+}
+
+.image-frame--error::after {
+    content: "Görsel yüklenemedi";
+    color: rgba(255, 255, 255, 0.8);
+    font-size: 0.95rem;
+    letter-spacing: 0.04em;
+}
+
 .slide.is-active .image-frame {
     border: 1px solid rgba(255, 255, 255, 0.14);
     background: rgba(255, 255, 255, 0.02);
@@ -153,10 +170,11 @@ body.grain-overlay-enabled .slider-container::before {
 }
 
 .slide img {
-    width: auto;
-    height: auto;
+    display: block;
+    width: min(92vw, 1280px);
+    height: min(74vh, 780px);
     max-width: 100%;
-    max-height: 80%; /* Adjusted for more text */
+    max-height: calc(100vh - 170px);
     object-fit: contain;
 }
 
