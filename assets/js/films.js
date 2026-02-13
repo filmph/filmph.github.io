@@ -1,3 +1,59 @@
+const films = [
+    {
+        title: "Vertigo",
+        year: 1958,
+        director: "Alfred Hitchcock",
+        imdbId: "tt0052357",
+        rating: "8.3 (433k)",
+        note: "Sinema tarihinin en ikonik yapıtlarından biri. Takıntı ve kimlik üzerine bir başyapıt.",
+        noteItalic: false,
+        images: [
+            {
+                alt: "Vertigo still 1",
+                sources: [
+                    "https://image.tmdb.org/t/p/original/768C1Yl7x299L20C6yX5L0N2z1C.jpg"
+                ]
+            },
+            {
+                alt: "Vertigo still 2",
+                sources: [
+                    "https://image.tmdb.org/t/p/original/m9m7vS0Xo8KkPiaY3I6zK7qL1B7.jpg"
+                ]
+            }
+        ]
+    },
+    {
+        title: "The 39 Steps",
+        year: 1935,
+        director: "Alfred Hitchcock",
+        imdbId: "tt0026029",
+        rating: "7.6 (63k)",
+        note: "Yanlış adam hikâyesinin erken ve etkili bir örneği; Hitchcock geriliminin temel taşlarından.",
+        noteItalic: false,
+        images: [
+            {
+                alt: "The 39 Steps still 1",
+                sources: [
+                    "https://s3.amazonaws.com/criterion-production/carousel-files/a566d98a978982ac4fcde312563abfdd.jpeg",
+                    "https://criterion-production.s3.amazonaws.com/carousel-files/a566d98a978982ac4fcde312563abfdd.jpeg"
+                ]
+            },
+            {
+                alt: "The 39 Steps still 2",
+                sources: [
+                    "https://s3.amazonaws.com/criterion-production/carousel-files/f737b8162d3e15f935e9fc72419f3f92.jpeg",
+                    "https://criterion-production.s3.amazonaws.com/carousel-files/f737b8162d3e15f935e9fc72419f3f92.jpeg"
+                ]
+            }
+        ]
+    }
+];
+
+function fallbackImageDataUri(filmTitle, sceneIndex) {
+    const safeTitle = String(filmTitle).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
+    const svg = `<svg xmlns="http://www.w3.org/2000/svg" width="1400" height="900" viewBox="0 0 1400 900"><defs><linearGradient id="bg" x1="0" y1="0" x2="1" y2="1"><stop offset="0%" stop-color="#111827"/><stop offset="100%" stop-color="#1f2937"/></linearGradient></defs><rect width="1400" height="900" fill="url(#bg)"/><circle cx="190" cy="170" r="140" fill="rgba(220,164,69,0.18)"/><circle cx="1200" cy="730" r="170" fill="rgba(106,168,255,0.12)"/><text x="80" y="740" fill="#f9fafb" font-size="72" font-family="Arial, Helvetica, sans-serif" font-weight="700">${safeTitle}</text><text x="82" y="800" fill="#d1d5db" font-size="34" font-family="Arial, Helvetica, sans-serif">Scene ${sceneIndex + 1} (fallback image)</text></svg>`;
+    return `data:image/svg+xml;charset=UTF-8,${encodeURIComponent(svg)}`;
+}
 const film = {
     title: "The 39 Steps",
     year: 1935,
@@ -18,6 +74,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const nextBtn = document.querySelector('.next-btn');
 
     const slidesData = films.flatMap((film) =>
+        film.images.map((image, index) => ({ film, image, index }))
         film.images.map((image) => ({
             film,
             image
@@ -27,6 +84,7 @@ document.addEventListener('DOMContentLoaded', () => {
     let currentIndex = 0;
 
     function createSlides() {
+        slidesData.forEach(({ film, image, index }) => {
         images.forEach((imageItem) => {
             const slide = document.createElement('div');
             slide.className = 'slide';
@@ -35,6 +93,16 @@ document.addEventListener('DOMContentLoaded', () => {
             imageFrame.className = 'image-frame';
 
             const img = document.createElement('img');
+            const sources = Array.isArray(image && image.sources) ? image.sources : [image];
+            const fallbackSrc = fallbackImageDataUri(film.title, index);
+            let sourceIndex = 0;
+
+            img.src = sources[sourceIndex] || fallbackSrc;
+            img.alt = (image && image.alt) || `${film.title} - Scene`;
+            img.loading = 'eager';
+            img.decoding = 'async';
+
+            img.addEventListener('error', () => {
             const sources = Array.isArray(imageItem && imageItem.sources) ? imageItem.sources : [imageItem];
             let sourceIndex = 0;
 
@@ -49,6 +117,8 @@ document.addEventListener('DOMContentLoaded', () => {
                     return;
                 }
 
+                img.src = fallbackSrc;
+                imageFrame.classList.add('image-frame--fallback');
                 imageFrame.classList.add("image-frame--error");
             });
 
