@@ -16,8 +16,14 @@ document.addEventListener('DOMContentLoaded', () => {
     const sliderTrack = document.querySelector('.slider-track');
     const prevBtn = document.querySelector('.prev-btn');
     const nextBtn = document.querySelector('.next-btn');
-    
-    const images = film.images;
+
+    const slidesData = films.flatMap((film) =>
+        film.images.map((image) => ({
+            film,
+            image
+        }))
+    );
+
     let currentIndex = 0;
 
     function createSlides() {
@@ -46,11 +52,9 @@ document.addEventListener('DOMContentLoaded', () => {
                 imageFrame.classList.add("image-frame--error");
             });
 
-            // Create caption container
             const caption = document.createElement('div');
             caption.className = 'caption';
 
-            // Left side: Title, Meta, Note
             const captionLeft = document.createElement('div');
             captionLeft.className = 'caption-left';
 
@@ -83,7 +87,6 @@ document.addEventListener('DOMContentLoaded', () => {
             captionLeft.appendChild(meta);
             captionLeft.appendChild(note);
 
-            // Right side: IMDb link
             const imdbLink = document.createElement('a');
             imdbLink.className = 'imdb-link';
             imdbLink.href = `https://www.imdb.com/title/${film.imdbId}/`;
@@ -101,11 +104,9 @@ document.addEventListener('DOMContentLoaded', () => {
             imdbLink.appendChild(imdbLogo);
             imdbLink.appendChild(imdbRating);
 
-            // Assemble caption
             caption.appendChild(captionLeft);
             caption.appendChild(imdbLink);
 
-            // Add image and caption to slide
             imageFrame.appendChild(img);
             slide.appendChild(imageFrame);
             slide.appendChild(caption);
@@ -127,20 +128,18 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     function showPrevImage() {
-        currentIndex = (currentIndex - 1 + images.length) % images.length;
+        currentIndex = (currentIndex - 1 + slidesData.length) % slidesData.length;
         updateSliderPosition();
     }
 
     function showNextImage() {
-        currentIndex = (currentIndex + 1) % images.length;
+        currentIndex = (currentIndex + 1) % slidesData.length;
         updateSliderPosition();
     }
 
-    // Initial setup
     createSlides();
-    updateSliderPosition();
+    requestAnimationFrame(updateSliderPosition);
 
-    // Event Listeners
     prevBtn.addEventListener('click', showPrevImage);
     nextBtn.addEventListener('click', showNextImage);
 
