@@ -21,7 +21,7 @@ document.addEventListener('DOMContentLoaded', () => {
     let currentIndex = 0;
 
     function createSlides() {
-        images.forEach(imageUrl => {
+        images.forEach((imageItem) => {
             const slide = document.createElement('div');
             slide.className = 'slide';
 
@@ -29,8 +29,22 @@ document.addEventListener('DOMContentLoaded', () => {
             imageFrame.className = 'image-frame';
 
             const img = document.createElement('img');
-            img.src = imageUrl;
-            img.alt = `${film.title} - Scene`;
+            const sources = Array.isArray(imageItem && imageItem.sources) ? imageItem.sources : [imageItem];
+            let sourceIndex = 0;
+
+            img.src = sources[sourceIndex];
+            img.alt = (imageItem && imageItem.alt) || `${film.title} - Scene`;
+            img.loading = "eager";
+
+            img.addEventListener("error", () => {
+                sourceIndex += 1;
+                if (sourceIndex < sources.length) {
+                    img.src = sources[sourceIndex];
+                    return;
+                }
+
+                imageFrame.classList.add("image-frame--error");
+            });
 
             // Create caption container
             const caption = document.createElement('div');
