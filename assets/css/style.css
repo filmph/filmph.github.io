@@ -136,36 +136,6 @@ main {
     margin-top: 18px;
 }
 
-.floating-quotes {
-    position: absolute;
-    inset: 0;
-    pointer-events: none;
-    overflow: hidden;
-    z-index: 0;
-}
-
-.floating-quote {
-    position: absolute;
-    font-size: clamp(12px, 1.4vw, 22px);
-    color: color-mix(in srgb, var(--text-secondary) 85%, transparent);
-    white-space: nowrap;
-    filter: blur(0.2px);
-    animation-name: quote-float;
-    animation-timing-function: ease-in-out;
-    animation-iteration-count: infinite;
-}
-
-@keyframes quote-float {
-    0%,
-    100% {
-        transform: translate3d(0, 0, 0);
-    }
-
-    50% {
-        transform: translate3d(0, -16px, 0);
-    }
-}
-
 #homepage-text {
     font-size: clamp(2.3rem, 6.5vw, 4.4rem);
     white-space: nowrap;
@@ -188,8 +158,6 @@ main {
 }
 
 .content {
-    position: relative;
-    z-index: 1;
     opacity: 0;
     transition: opacity 0.5s ease-in;
     width: 100%;
