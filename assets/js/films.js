@@ -7,8 +7,8 @@ const film = {
     note: "Yanlış adam hikâyesinin erken ve etkili bir örneği; Hitchcock geriliminin temel taşlarından.",
     noteItalic: false,
     images: [
-        "https://criterion-production.s3.amazonaws.com/carousel-files/a566d98a978982ac4fcde312563abfdd.jpeg",
-        "https://criterion-production.s3.amazonaws.com/carousel-files/f737b8162d3e15f935e9fc72419f3f92.jpeg"
+        "https://s3.amazonaws.com/criterion-production/carousel-files/a566d98a978982ac4fcde312563abfdd.jpeg",
+        "https://s3.amazonaws.com/criterion-production/carousel-files/f737b8162d3e15f935e9fc72419f3f92.jpeg"
     ]
 };
 
