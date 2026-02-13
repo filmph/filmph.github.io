@@ -1,16 +1,26 @@
 const film = {
-    title: "Vertigo",
-    year: 1958,
+    title: "The 39 Steps",
+    year: 1935,
     director: "Alfred Hitchcock",
-    imdbId: "tt0052357",
-    rating: "8.3 (433k)",
-    note: "Sinema tarihinin en ikonik yapıtlarından biri. Takıntı ve kimlik üzerine bir başyapıt.",
+    imdbId: "tt0026029",
+    rating: "7.6 (63k)",
+    note: "Yanlış adam hikâyesinin erken ve etkili bir örneği; Hitchcock geriliminin temel taşlarından.",
     noteItalic: false,
     images: [
-        "https://image.tmdb.org/t/p/original/768C1Yl7x299L20C6yX5L0N2z1C.jpg", 
-        "https://image.tmdb.org/t/p/original/m9m7vS0Xo8KkPiaY3I6zK7qL1B7.jpg",
-        "https://image.tmdb.org/t/p/original/AtT7L9ubE64222p2kjG1L5a4sPA.jpg",
-        "https://image.tmdb.org/t/p/original/su12xJp28Zf5R8s8i8zN8h8p2k.jpg"
+        {
+            alt: "The 39 Steps still 1",
+            sources: [
+                "https://s3.amazonaws.com/criterion-production/carousel-files/a566d98a978982ac4fcde312563abfdd.jpeg",
+                "https://criterion-production.s3.amazonaws.com/carousel-files/a566d98a978982ac4fcde312563abfdd.jpeg"
+            ]
+        },
+        {
+            alt: "The 39 Steps still 2",
+            sources: [
+                "https://s3.amazonaws.com/criterion-production/carousel-files/f737b8162d3e15f935e9fc72419f3f92.jpeg",
+                "https://criterion-production.s3.amazonaws.com/carousel-files/f737b8162d3e15f935e9fc72419f3f92.jpeg"
+            ]
+        }
     ]
 };
 
@@ -23,7 +33,7 @@ document.addEventListener('DOMContentLoaded', () => {
     let currentIndex = 0;
 
     function createSlides() {
-        images.forEach(imageUrl => {
+        images.forEach((imageItem) => {
             const slide = document.createElement('div');
             slide.className = 'slide';
 
@@ -31,8 +41,22 @@ document.addEventListener('DOMContentLoaded', () => {
             imageFrame.className = 'image-frame';
 
             const img = document.createElement('img');
-            img.src = imageUrl;
-            img.alt = `${film.title} - Scene`;
+            const sources = Array.isArray(imageItem && imageItem.sources) ? imageItem.sources : [imageItem];
+            let sourceIndex = 0;
+
+            img.src = sources[sourceIndex];
+            img.alt = (imageItem && imageItem.alt) || `${film.title} - Scene`;
+            img.loading = "eager";
+
+            img.addEventListener("error", () => {
+                sourceIndex += 1;
+                if (sourceIndex < sources.length) {
+                    img.src = sources[sourceIndex];
+                    return;
+                }
+
+                imageFrame.classList.add("image-frame--error");
+            });
 
             // Create caption container
             const caption = document.createElement('div');
