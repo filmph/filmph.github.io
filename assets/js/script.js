@@ -53,9 +53,9 @@ document.addEventListener('DOMContentLoaded', function () {
 
     if (randomQuoteText) {
         const quotes = [
-            '“Bir filmi anlamak için bazen sesini kapatırım.”',
-            '“Not almak, hafızanın ritmini yavaşlatıyor.”',
-            '“Aynı sahneyi tekrar izlemek, yeni bir cümle kurmak gibi.”'
+            'Bir filmi anlamak için bazen sesini kapatırım.',
+            'Not almak, hafızanın ritmini yavaşlatıyor.',
+            'Aynı sahneyi tekrar izlemek, yeni bir cümle kurmak gibi.'
         ];
 
         const randomQuote = quotes[Math.floor(Math.random() * quotes.length)];
